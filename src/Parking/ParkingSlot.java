@@ -1,15 +1,15 @@
 package Parking;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class ParkingSlot {
 	
-	static HashMap<Integer,Cars> carslots = new HashMap<Integer,Cars>();
+	ArrayList<Cars> carslots = new ArrayList<Cars>();
 	
 	int parkingSlotsnum;
+	
 	Scanner sc = new Scanner(System.in);
 	
 	public ParkingSlot(int parkingSlotsnum) {
@@ -25,8 +25,9 @@ public class ParkingSlot {
 	public int carParkingDetails(String carregistrationNumber,String carcolor,String carbrand) {
 		
 		int slots=nextSlotAvailable();
+		System.out.println(slots);
 		Cars cars = new Cars(carregistrationNumber,carcolor,carbrand,slots);
-		carslots.put(slots, cars);
+		carslots.add(cars);
 		return slots;
 		
 	}
@@ -35,24 +36,26 @@ public class ParkingSlot {
 		int nextslot = 0;
 		System.out.println("cars in parking "+carslots.size() );
 		for(int i=1;i<= parkingSlotsnum;i++) {
-			if(carslots.get(i) == null){
-				System.out.println("slot availabe "+i);
-				return i;
+			if(carslots.indexOf(i) != 0){
+				System.out.println("slot available"+i );
+				return i++;
 			}
 		}
 		return nextslot;
 		
 	}
-	void showListOfSameCarColorDetails(String color){
+	public void showListOfSameCarColorDetails(String color) {
 
 		boolean carcolorexist = false;
 		
-		for (Map.Entry<Integer, Cars> entry : carslots.entrySet()) {
-		 if(entry.getValue().getColor().equalsIgnoreCase(color)) {
-             System.out.println("slot number: " + entry.getValue().getSlotNumber());
-             carcolorexist= true;
-         }
-		}
+		for (Cars i : carslots) {
+	        if (i.getColor().equals(color)) {
+	        	System.out.println("Slot number: " + i.getSlotNumber());
+	        	System.out.println("Registration number: " + i.getRegistrationNumber());
+	        	 carcolorexist= true;
+	        }
+	    }
+			
 		if(!carcolorexist) {
             System.out.println("No car is found with given color");
         }
@@ -61,12 +64,14 @@ public class ParkingSlot {
 	
 	void showListCarColorRegistrationNum(String rgstrtnum) {
 		boolean carcolorexist = false;
-		for (Map.Entry<Integer, Cars> entry : carslots.entrySet()) {
-			 if(entry.getValue().getColor().equalsIgnoreCase(rgstrtnum)) {
-	             System.out.println("Registration number: " + entry.getValue().getRegistrationNumber());
-	             carcolorexist= true;
-	         }
-			}
+		for (Cars i : carslots) {
+	        if (i.getRegistrationNumber().equals(rgstrtnum)) {
+	        	System.out.println("Slot number: " + i.getSlotNumber());
+	        	System.out.println("car color: " + i.getColor());
+	        	System.out.println("Brand: " + i.getBrand());
+	        	 carcolorexist= true;
+	        }
+	    }
 			if(!carcolorexist) {
 	            System.out.println("No car is found with given color");
 	        }
@@ -74,20 +79,24 @@ public class ParkingSlot {
 	}
 	
 	
-	public HashMap<Integer, Cars> removeSlot(int removeSlot) {
-			carslots.remove(removeSlot);
-		return carslots;
-	}
-
-
 	void showListOfCarDetails() {
-		for (Map.Entry<Integer, Cars> entry : carslots.entrySet()) {
-			System.out.println("Slot number: " + entry.getValue().getSlotNumber());
-			System.out.println("Registration number: " + entry.getValue().getRegistrationNumber());
-			System.out.println("Color: " + entry.getValue().getColor());
-			System.out.println("Brand: " + entry.getValue().getBrand());
+		for (Cars i : carslots) {
+			System.out.println("Slot number: " + i.getSlotNumber());
+			System.out.println("Registration number: " + i.getRegistrationNumber());
+			System.out.println("car color: " + i.getColor());
+        	System.out.println("Brand: " + i.getBrand());
 		}
+		
 	}
+
+	
+	public void removeSlot(int removeSlot) {
+		// TODO Auto-generated method stub
+		carslots.remove(removeSlot);
+		
+	}
+
+	
 	
 	
 

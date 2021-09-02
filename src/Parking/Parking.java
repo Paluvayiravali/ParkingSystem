@@ -1,6 +1,7 @@
 package Parking;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class Parking {
 	
-	static HashMap<Integer,Cars> carslots = new HashMap<Integer,Cars>();
+	ArrayList<Cars> carslots = new ArrayList<Cars>();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -23,7 +24,7 @@ public class Parking {
 		System.out.println("2.Leave parking slot");
 		System.out.println("3.List of parking cars");
 		System.out.println("4.List of slot numbers with the same car color");
-		System.out.println("5.List of registration numbers with the same car color");
+		System.out.println("5.List of car parking details with registration number");
 		System.out.println("6.Exit");
 		
 		do {
@@ -54,8 +55,8 @@ public class Parking {
 				
 			case 2:
 				System.out.println("Enter slot to remove");
-				int removeSlot = sc.nextInt();
-				parkingslots.removeSlot(removeSlot);
+				int slotnumber = sc.nextInt();
+				parkingslots.removeSlot(slotnumber);
 				System.out.println("Slot Removed Successfully");
 				break;
 				
@@ -63,7 +64,7 @@ public class Parking {
 				System.out.println("List of Parking cars");
 				parkingslots.showListOfCarDetails();
 				break;
-				
+			
 			case 4:
 				System.out.println("Enter car color");
 				String carcolor = sc.next();
@@ -71,9 +72,9 @@ public class Parking {
 				break;
 				
 			case 5:
-				System.out.println("Enter car color");
-				String carcolor1 = sc.next();
-				parkingslots.showListCarColorRegistrationNum(carcolor1);
+				System.out.println("Enter car registration number");
+				String carregistrationNumber = sc.next();
+				parkingslots.showListCarColorRegistrationNum(carregistrationNumber);
 				break;
 				
 			

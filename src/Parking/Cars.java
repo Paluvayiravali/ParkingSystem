@@ -48,6 +48,14 @@ public class Cars {
 		// TODO Auto-generated method stub
 		this.slotNumber = slotno;
 	}
+	
+	
+
+	
+
+	
+
+	
 
 	
 
