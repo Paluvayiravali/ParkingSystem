@@ -12,8 +12,6 @@ public class Cars {
 		color = carcolor;
 		brand = carbrand;
 		slotNumber = slotnumber;
-		
-		
 	}
 	
 	public String getColor() {
@@ -37,16 +35,23 @@ public class Cars {
 		this.registrationNumber = registrationNumber;
 	}
 	
-	 public String toString(){//overriding the toString() method   
-		 return "[registrationNumber=" + registrationNumber + ", color=" + color + ", brand=" + brand + ", slotNumber=" + slotNumber + " ]";
-		 
-		 }
-
+	
 	public int getSlotNumber() {
 		return slotNumber;
 	}
 
 	public void setSlotNumber(int slotNumber) {
 		this.slotNumber = slotNumber;
-	}  
+	}
+
+	public void remove(int slotno) {
+		// TODO Auto-generated method stub
+		this.slotNumber = slotno;
+	}
+
+	
+
+	
+
+	 
 }

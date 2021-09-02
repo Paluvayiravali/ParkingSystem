@@ -9,21 +9,22 @@ import java.util.Scanner;
 
 public class Parking {
 	
-	
+	static HashMap<Integer,Cars> carslots = new HashMap<Integer,Cars>();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		int menulist;
 		
-		ParkingSlot slots = new ParkingSlot();
+		ParkingSlot parkingslots = new ParkingSlot(10);
 		
 		System.out.println("Welcome to Parking System");
 		System.out.println("1.Enter parking slot");
 		System.out.println("2.Leave parking slot");
 		System.out.println("3.List of parking cars");
-		System.out.println("4.List of parking cars of same color");
-		System.out.println("5.Exit");
+		System.out.println("4.List of slot numbers with the same car color");
+		System.out.println("5.List of registration numbers with the same car color");
+		System.out.println("6.Exit");
 		
 		do {
 				System.out.println("---------------------------------");
@@ -42,20 +43,41 @@ public class Parking {
 					System.out.println("\n Enter brand \n");
 					String carbrand = sc.next();
 					
-					int carpark = slots.carParkingDetails(carregistrationNumber, carcolor, carbrand);
-					if(carpark==0)
+					int carpark = parkingslots.carParkingDetails(carregistrationNumber, carcolor, carbrand);
+					if(carpark==0) {
 		        		System.out.println("slots not available");
-		        	else
-		        		System.out.println("car parked at the slot "+carpark+"");					
+					}else {
+		        		System.out.println("car parked at the slot "+carpark+"");	
+					}
 				}
+				break;
+				
+			case 2:
+				System.out.println("Enter slot to remove");
+				int removeSlot = sc.nextInt();
+				parkingslots.removeSlot(removeSlot);
+				System.out.println("Slot Removed Successfully");
 				break;
 				
 			case 3:
 				System.out.println("List of Parking cars");
-				slots.showListOfCarDetails();
+				parkingslots.showListOfCarDetails();
+				break;
+				
+			case 4:
+				System.out.println("Enter car color");
+				String carcolor = sc.next();
+				parkingslots.showListOfSameCarColorDetails(carcolor);
+				break;
+				
+			case 5:
+				System.out.println("Enter car color");
+				String carcolor1 = sc.next();
+				parkingslots.showListCarColorRegistrationNum(carcolor1);
+				break;
 				
 			
-			case 4 :
+			case 6 :
 				System.out.println("---------------------------------");
 				break;
 				
@@ -64,7 +86,7 @@ public class Parking {
 				break;
 				
 				}
-			}while(menulist != 5); 
+			}while(menulist != 6); 
 		  System.out.println("Thankyou for using our parking system.");
 		  
 		  
